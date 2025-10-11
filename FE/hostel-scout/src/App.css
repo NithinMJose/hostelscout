@@ -1,0 +1,124 @@
+/* Layout root */
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+.brand {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+.nav-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 2rem;
+  align-items: center;
+  padding: 3rem 0;
+}
+.hero-content {
+  text-align: left;
+}
+.hero-title {
+  font-size: 2.4rem;
+  margin: 0 0 0.5rem 0;
+}
+.hero-sub {
+  margin: 0 0 1.25rem 0;
+  color: rgba(255,255,255,0.8);
+}
+.hero-ctas {
+  display: flex;
+  gap: 0.75rem;
+}
+.hero-illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.phone-mock {
+  width: 260px;
+  height: 480px;
+  background: linear-gradient(180deg, rgba(100,108,255,0.15), rgba(97,218,251,0.06));
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.9);
+  border: 1px solid rgba(255,255,255,0.04);
+  font-weight: 700;
+}
+
+/* Features */
+.features {
+  padding: 2rem 0 3rem 0;
+}
+.feature-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.feature {
+  background: rgba(255,255,255,0.03);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+/* Footer */
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 0 3rem 0;
+  border-top: 1px solid rgba(255,255,255,0.03);
+}
+.footer-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.btn.primary {
+  background: linear-gradient(90deg, #646cff, #5b8cff);
+  color: white;
+  border: none;
+}
+.btn.ghost {
+  background: transparent;
+  color: inherit;
+}
+
+/* Responsive */
+@media (max-width: 880px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .hero-illustration {
+    order: -1;
+  }
+}
+

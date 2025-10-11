@@ -1,0 +1,30 @@
+# =========================
+# Spring Boot / Java
+# =========================
+/Java/hostel/target/
+*.log
+*.class
+*.jar
+*.war
+*.iml
+/.idea/
+*.h2.db
+*.db
+
+# =========================
+# Node / React
+# =========================
+/FE/hostel-scout/node_modules/
+FE/hostel-scout/build/
+FE/hostel-scout/.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# OS / IDE
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
