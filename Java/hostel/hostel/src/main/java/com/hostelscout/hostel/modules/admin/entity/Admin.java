@@ -5,6 +5,8 @@ import com.hostelscout.hostel.modules.common.entity.BaseUser;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "admins")
 @Getter
@@ -15,8 +17,8 @@ import lombok.*;
 public class Admin {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long admin_id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID admin_id;
 
     @OneToOne
     @JoinColumn(name = "base_user_id", nullable = false)

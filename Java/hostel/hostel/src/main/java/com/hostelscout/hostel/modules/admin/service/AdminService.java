@@ -3,7 +3,7 @@ package com.hostelscout.hostel.modules.admin.service;
 
 import com.hostelscout.hostel.common.exception.ResourceConflictException;
 import com.hostelscout.hostel.modules.admin.dto.AdminCreationDto;
-import com.hostelscout.hostel.modules.admin.dto.AdminresponseDto;
+import com.hostelscout.hostel.modules.admin.dto.AdminResponseDto;
 import com.hostelscout.hostel.modules.admin.entity.Admin;
 import com.hostelscout.hostel.modules.admin.mapper.AdminMapper;
 import com.hostelscout.hostel.modules.admin.repository.AdminRepository;
@@ -24,8 +24,9 @@ public class AdminService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final AdminMapper adminMapper;
 
+    // CREATE_ADMIN SERVICE
     @Transactional
-    public AdminresponseDto createAdmin(AdminCreationDto adminCreationDto) {
+    public AdminResponseDto createAdmin(AdminCreationDto adminCreationDto) {
 
             //Early return if email already exists
             if (baseUserRepository.existsByEmail(adminCreationDto.getEmail())) {
@@ -53,6 +54,9 @@ public class AdminService {
             admin = adminRepository.save(admin);
 
             // Prepare and return response DTO
-            return adminMapper.toAdminesponseDto(admin);
+            return adminMapper.toAdminResponseDto(admin);
     }
+
+//    //GET_ADMIN SERVICE
+//    public AdminResponseDto getAdminById( )
 }

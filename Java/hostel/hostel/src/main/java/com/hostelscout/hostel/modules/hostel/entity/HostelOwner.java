@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "hostel_owners")
@@ -17,8 +18,8 @@ import java.util.List;
 public class HostelOwner {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long owner_id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID owner_id;
 
     @Column(nullable = false)
     private String companyName;

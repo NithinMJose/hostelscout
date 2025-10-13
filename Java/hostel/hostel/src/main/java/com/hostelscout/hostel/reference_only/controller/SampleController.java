@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/sample")
@@ -24,7 +25,7 @@ public class SampleController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Sample> getById(@PathVariable Long id) {
+    public ResponseEntity<Sample> getById(@PathVariable UUID id) {
         return service.getById(id)
                 .map(sample -> new ResponseEntity<>(sample, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
@@ -37,14 +38,14 @@ public class SampleController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Sample> update(@PathVariable Long id, @RequestBody Sample newSample) {
+    public ResponseEntity<Sample> update(@PathVariable UUID id, @RequestBody Sample newSample) {
         return service.update(id, newSample)
                 .map(updated -> new ResponseEntity<>(updated, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable UUID id) {
         if (service.delete(id)) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {

@@ -10,7 +10,6 @@ import lombok.*;
 @Builder
 public class HostelOwnerResponseDto {
 
-    private Long owner_id;
     private String companyName;
     private String businessRegistrationNumber;
     private String contactNumber;

@@ -1,7 +1,7 @@
 package com.hostelscout.hostel.modules.admin.controller;
 
 import com.hostelscout.hostel.modules.admin.dto.AdminCreationDto;
-import com.hostelscout.hostel.modules.admin.dto.AdminresponseDto;
+import com.hostelscout.hostel.modules.admin.dto.AdminResponseDto;
 import com.hostelscout.hostel.modules.admin.service.AdminService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
-
 @RestController
 @RequestMapping("/api/admins")
 @RequiredArgsConstructor
@@ -23,7 +21,7 @@ public class AdminController {
 
     @PostMapping
     public ResponseEntity<?> createAdmin(@Valid @RequestBody AdminCreationDto adminCreationDto) {
-            AdminresponseDto createdAdmin = adminService.createAdmin(adminCreationDto);
+            AdminResponseDto createdAdmin = adminService.createAdmin(adminCreationDto);
             return new ResponseEntity<>(createdAdmin, HttpStatus.CREATED);
     }
 }

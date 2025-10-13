@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class SampleService {
@@ -20,7 +21,7 @@ public class SampleService {
         return repo.findAll();
     }
 
-    public Optional<Sample> getById(Long id) {
+    public Optional<Sample> getById(UUID id) {
         return repo.findById(id);
     }
 
@@ -28,7 +29,7 @@ public class SampleService {
         return repo.save(sample);
     }
 
-    public Optional<Sample> update(Long id, Sample newSample) {
+    public Optional<Sample> update(UUID id, Sample newSample) {
         return repo.findById(id).map(existing -> {
             existing.setName(newSample.getName());
             existing.setDescription(newSample.getDescription());
@@ -37,7 +38,7 @@ public class SampleService {
     }
 
 
-    public boolean delete(Long id) {
+    public boolean delete(UUID id) {
         if (repo.existsById(id)) {
             repo.deleteById(id);
             return true;
