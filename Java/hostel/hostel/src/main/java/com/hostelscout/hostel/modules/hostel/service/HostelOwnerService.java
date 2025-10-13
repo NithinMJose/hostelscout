@@ -2,7 +2,7 @@ package com.hostelscout.hostel.modules.hostel.service;
 
 import com.hostelscout.hostel.modules.common.entity.BaseUser;
 import com.hostelscout.hostel.modules.common.enums.Role;
-import com.hostelscout.hostel.modules.common.exception.ResourceConflictException;
+import com.hostelscout.hostel.common.exception.ResourceConflictException;
 import com.hostelscout.hostel.modules.common.repository.BaseUserRepository;
 import com.hostelscout.hostel.modules.hostel.dto.HostelOwnerCreationDto;
 import com.hostelscout.hostel.modules.hostel.dto.HostelOwnerResponseDto;
@@ -26,8 +26,13 @@ public class HostelOwnerService {
     @Transactional
     public HostelOwnerResponseDto createHostelOwner(HostelOwnerCreationDto creationDto) {
 
+        // Check for existing email
         if (baseUserRepository.existsByEmail(creationDto.getEmail())) {
             throw new ResourceConflictException("Email already in use");
+        }
+        // Check for existing username
+        if (baseUserRepository.existsByUsername(creationDto.getUsername())) {
+            throw new ResourceConflictException("Username already in use");
         }
 
         // Create BaseUser

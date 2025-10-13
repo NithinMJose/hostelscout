@@ -23,19 +23,7 @@ public class AdminController {
 
     @PostMapping
     public ResponseEntity<?> createAdmin(@Valid @RequestBody AdminCreationDto adminCreationDto) {
-        try {
             AdminresponseDto createdAdmin = adminService.createAdmin(adminCreationDto);
             return new ResponseEntity<>(createdAdmin, HttpStatus.CREATED);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(
-                    Map.of("error", e.getMessage()),
-                    HttpStatus.BAD_REQUEST
-            );
-        } catch (Exception e) {
-            return new ResponseEntity<>(
-                    Map.of("error", "Internal server error occurred"),
-                    HttpStatus.INTERNAL_SERVER_ERROR
-            );
-        }
     }
 }

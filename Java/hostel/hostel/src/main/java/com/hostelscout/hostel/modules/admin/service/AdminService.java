@@ -1,9 +1,11 @@
 package com.hostelscout.hostel.modules.admin.service;
 
 
+import com.hostelscout.hostel.common.exception.ResourceConflictException;
 import com.hostelscout.hostel.modules.admin.dto.AdminCreationDto;
 import com.hostelscout.hostel.modules.admin.dto.AdminresponseDto;
 import com.hostelscout.hostel.modules.admin.entity.Admin;
+import com.hostelscout.hostel.modules.admin.mapper.AdminMapper;
 import com.hostelscout.hostel.modules.admin.repository.AdminRepository;
 import com.hostelscout.hostel.modules.common.entity.BaseUser;
 import com.hostelscout.hostel.modules.common.enums.Role;
@@ -11,6 +13,7 @@ import com.hostelscout.hostel.modules.common.repository.BaseUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,13 +22,18 @@ public class AdminService {
     private final BaseUserRepository baseUserRepository;
     private final AdminRepository adminRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final AdminMapper adminMapper;
 
-
+    @Transactional
     public AdminresponseDto createAdmin(AdminCreationDto adminCreationDto) {
-        try {
+
             //Early return if email already exists
             if (baseUserRepository.existsByEmail(adminCreationDto.getEmail())) {
-                throw new IllegalArgumentException("Email already in use");
+                throw new ResourceConflictException("Email already in use");
+            }
+            //Early return if username already exists
+            if (baseUserRepository.existsByUsername(adminCreationDto.getUsername())) {
+                throw new ResourceConflictException("Username already in use");
             }
 
             // Create BaseUser
@@ -44,15 +52,7 @@ public class AdminService {
                     .build();
             admin = adminRepository.save(admin);
 
-            return AdminresponseDto.builder()
-                    .admin_id(admin.getAdmin_id())
-                    .username(baseUser.getUsername())
-                    .email(baseUser.getEmail())
-                    .role(baseUser.getRole())
-                    .build();
-
-        } catch (Exception e) {
-            throw new RuntimeException("Error creating admin: " + e.getMessage(), e);
-        }
+            // Prepare and return response DTO
+            return adminMapper.toAdminesponseDto(admin);
     }
 }

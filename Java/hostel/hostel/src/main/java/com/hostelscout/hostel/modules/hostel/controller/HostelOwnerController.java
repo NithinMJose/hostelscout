@@ -23,14 +23,7 @@ public class HostelOwnerController {
 
     @PostMapping
     public ResponseEntity<?> createHostelOwner(@Valid @RequestBody HostelOwnerCreationDto creationDto) {
-        try {
-            HostelOwnerResponseDto responseDto = hostelOwnerService.createHostelOwner(creationDto);
-            return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(
-                    Map.of("error", e.getMessage()),
-                    HttpStatus.INTERNAL_SERVER_ERROR
-            );
-        }
+        HostelOwnerResponseDto responseDto = hostelOwnerService.createHostelOwner(creationDto);
+        return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
     }
 }

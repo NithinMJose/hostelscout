@@ -1,4 +1,4 @@
-package com.hostelscout.hostel.modules.common.exception;
+package com.hostelscout.hostel.common.exception;
 
 public class ResourceConflictException extends RuntimeException{
     public ResourceConflictException(String message) {
