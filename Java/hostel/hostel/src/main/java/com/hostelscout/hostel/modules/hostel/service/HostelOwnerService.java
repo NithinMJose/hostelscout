@@ -23,6 +23,7 @@ public class HostelOwnerService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final HostelOwnerMapper hostelOwnerMapper;
 
+    // CREATE_HOSTEL_OWNER
     @Transactional
     public HostelOwnerResponseDto createHostelOwner(HostelOwnerCreationDto creationDto) {
 

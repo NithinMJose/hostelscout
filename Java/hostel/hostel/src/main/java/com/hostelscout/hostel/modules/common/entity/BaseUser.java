@@ -11,7 +11,12 @@ import java.time.LocalDateTime;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "base_users")
+@Table(
+        name = "base_users",
+        indexes = {
+                @Index(name = "idx_role", columnList = "role")
+        }
+    )
 @Getter
 @Setter
 @NoArgsConstructor

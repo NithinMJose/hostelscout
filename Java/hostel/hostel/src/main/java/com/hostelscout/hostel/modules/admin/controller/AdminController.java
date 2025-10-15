@@ -7,10 +7,10 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/admins")
@@ -24,4 +24,18 @@ public class AdminController {
             AdminResponseDto createdAdmin = adminService.createAdmin(adminCreationDto);
             return new ResponseEntity<>(createdAdmin, HttpStatus.CREATED);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getAdminById(@PathVariable UUID id){
+        return new ResponseEntity<>(adminService.getAdminById(id), HttpStatus.OK);
+    }
+
+    //ONLY FOR SU
+    @GetMapping
+    public ResponseEntity<List<?>> getAllAdmins(){
+        List<AdminResponseDto> admins = adminService.getAllAdmins();
+        return new ResponseEntity<>(admins, HttpStatus.OK);
+    }
+
+
 }

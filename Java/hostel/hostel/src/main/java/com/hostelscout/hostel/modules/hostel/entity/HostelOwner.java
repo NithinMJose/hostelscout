@@ -24,7 +24,7 @@ public class HostelOwner {
     @Column(nullable = false)
     private String companyName;
 
-    @Column(nullable = true)
+    @Column(nullable = true, unique = true)
     private String businessRegistrationNumber;
 
     @Column(nullable = false)

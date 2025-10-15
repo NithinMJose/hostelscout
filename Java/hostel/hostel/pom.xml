@@ -75,6 +75,12 @@
 			<version>1.6.3</version>
 		</dependency>
 
+<!--        // FLYWAY Dependency is for versioning the sql changes(kept for future use)-->
+<!--        <dependency>-->
+<!--            <groupId>org.flywaydb</groupId>-->
+<!--            <artifactId>flyway-core</artifactId>-->
+<!--        </dependency>-->
+
 
 	</dependencies>
 
