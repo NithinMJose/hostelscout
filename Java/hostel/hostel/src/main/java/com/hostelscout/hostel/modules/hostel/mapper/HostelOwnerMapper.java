@@ -9,5 +9,7 @@ import org.mapstruct.Mapping;
 public interface HostelOwnerMapper {
 
     @Mapping(source = "baseUser.role", target = "role")
+    @Mapping(source = "baseUser.username", target = "username")
+    @Mapping(source = "baseUser.email", target = "email")
     HostelOwnerResponseDto toResponseDto(HostelOwner hostelOwner);
 }
