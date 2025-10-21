@@ -1,6 +1,5 @@
-package com.hostelscout.hostel.modules.hostel.dto;
+package com.hostelscout.hostel.modules.hostelowner.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 

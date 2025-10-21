@@ -1,4 +1,4 @@
-package com.hostelscout.hostel.modules.hostel.dto;
+package com.hostelscout.hostel.modules.hostelowner.dto;
 
 import com.hostelscout.hostel.modules.common.enums.Role;
 import lombok.*;

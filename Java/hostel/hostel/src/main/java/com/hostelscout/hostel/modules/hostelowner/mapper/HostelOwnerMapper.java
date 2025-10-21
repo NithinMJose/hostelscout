@@ -1,7 +1,7 @@
-package com.hostelscout.hostel.modules.hostel.mapper;
+package com.hostelscout.hostel.modules.hostelowner.mapper;
 
-import com.hostelscout.hostel.modules.hostel.dto.HostelOwnerResponseDto;
-import com.hostelscout.hostel.modules.hostel.entity.HostelOwner;
+import com.hostelscout.hostel.modules.hostelowner.dto.HostelOwnerResponseDto;
+import com.hostelscout.hostel.modules.hostelowner.entity.HostelOwner;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

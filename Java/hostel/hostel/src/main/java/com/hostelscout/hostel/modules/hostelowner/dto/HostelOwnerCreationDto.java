@@ -1,4 +1,4 @@
-package com.hostelscout.hostel.modules.hostel.dto;
+package com.hostelscout.hostel.modules.hostelowner.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

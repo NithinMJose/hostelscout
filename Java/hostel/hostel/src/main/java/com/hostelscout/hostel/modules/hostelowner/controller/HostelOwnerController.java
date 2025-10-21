@@ -1,9 +1,9 @@
-package com.hostelscout.hostel.modules.hostel.controller;
+package com.hostelscout.hostel.modules.hostelowner.controller;
 
-import com.hostelscout.hostel.modules.hostel.dto.HostelOwnerCreationDto;
-import com.hostelscout.hostel.modules.hostel.dto.HostelOwnerResponseDto;
-import com.hostelscout.hostel.modules.hostel.dto.HostelOwnerUpdationDto;
-import com.hostelscout.hostel.modules.hostel.service.HostelOwnerService;
+import com.hostelscout.hostel.modules.hostelowner.dto.HostelOwnerCreationDto;
+import com.hostelscout.hostel.modules.hostelowner.dto.HostelOwnerResponseDto;
+import com.hostelscout.hostel.modules.hostelowner.dto.HostelOwnerUpdationDto;
+import com.hostelscout.hostel.modules.hostelowner.service.HostelOwnerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @RestController

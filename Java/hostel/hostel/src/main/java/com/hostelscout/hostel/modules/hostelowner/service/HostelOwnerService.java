@@ -1,16 +1,16 @@
-package com.hostelscout.hostel.modules.hostel.service;
+package com.hostelscout.hostel.modules.hostelowner.service;
 
 import com.hostelscout.hostel.common.exception.ResourceNotFoundException;
 import com.hostelscout.hostel.modules.common.entity.BaseUser;
 import com.hostelscout.hostel.modules.common.enums.Role;
 import com.hostelscout.hostel.common.exception.ResourceConflictException;
 import com.hostelscout.hostel.modules.common.repository.BaseUserRepository;
-import com.hostelscout.hostel.modules.hostel.dto.HostelOwnerCreationDto;
-import com.hostelscout.hostel.modules.hostel.dto.HostelOwnerResponseDto;
-import com.hostelscout.hostel.modules.hostel.dto.HostelOwnerUpdationDto;
-import com.hostelscout.hostel.modules.hostel.entity.HostelOwner;
-import com.hostelscout.hostel.modules.hostel.mapper.HostelOwnerMapper;
-import com.hostelscout.hostel.modules.hostel.repository.HostelOwnerRepository;
+import com.hostelscout.hostel.modules.hostelowner.dto.HostelOwnerCreationDto;
+import com.hostelscout.hostel.modules.hostelowner.dto.HostelOwnerResponseDto;
+import com.hostelscout.hostel.modules.hostelowner.dto.HostelOwnerUpdationDto;
+import com.hostelscout.hostel.modules.hostelowner.entity.HostelOwner;
+import com.hostelscout.hostel.modules.hostelowner.mapper.HostelOwnerMapper;
+import com.hostelscout.hostel.modules.hostelowner.repository.HostelOwnerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

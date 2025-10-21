@@ -1,5 +1,6 @@
 package com.hostelscout.hostel.modules.hostel.entity;
 
+import com.hostelscout.hostel.modules.hostelowner.entity.HostelOwner;
 import jakarta.persistence.*;
 import lombok.*;
 
