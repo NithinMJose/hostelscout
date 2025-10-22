@@ -32,6 +32,7 @@ public class HostelOwnerService {
     @Transactional
     public HostelOwnerResponseDto createHostelOwner(HostelOwnerCreationDto creationDto) {
 
+
         // Check for existing email
         if (baseUserRepository.existsByEmail(creationDto.getEmail())) {
             throw new ResourceConflictException("Email already in use");
