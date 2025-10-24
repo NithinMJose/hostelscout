@@ -1,6 +1,7 @@
 package com.hostelscout.hostel.modules.hostel.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -13,18 +14,18 @@ import java.util.UUID;
 @Builder
 public class HostelCreationDto {
 
-    @NotBlank
+    @NotBlank(message = "Hostel name is required")
     private String hostelName;
 
-    @NotBlank
+    @NotBlank(message = "Address is required")
     private String address;
 
-    @NotBlank
+    @NotBlank(message = "City is required")
     private String city;
 
-    @NotBlank
+    @NotNull(message = "Established date is required")
     private LocalDate establishedDate;
 
-    @NotBlank
-    private UUID owner_id;
+    @NotNull(message = "Owner ID is required")
+    private UUID ownerId;
 }
