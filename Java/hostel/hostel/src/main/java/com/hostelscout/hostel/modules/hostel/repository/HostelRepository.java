@@ -7,4 +7,6 @@ import java.util.UUID;
 
 public interface HostelRepository extends JpaRepository<Hostel, UUID> {
 
+    boolean existsByHostelName(String hostelName);
+
 }

@@ -2,6 +2,7 @@ package com.hostelscout.hostel.modules.hostel.controller;
 
 import com.hostelscout.hostel.modules.hostel.dto.HostelCreationDto;
 import com.hostelscout.hostel.modules.hostel.dto.HostelResponseDto;
+import com.hostelscout.hostel.modules.hostel.dto.HostelUpdationDto;
 import com.hostelscout.hostel.modules.hostel.service.HostelService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -27,5 +28,16 @@ public class HostelController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getHostelById(@PathVariable UUID id){
         return new ResponseEntity<>(hostelService.getHostelByid(id), HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> listHostels(){
+        return new ResponseEntity<>(hostelService.listHostels(), HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity<?> updateHostel (@Valid @RequestBody HostelUpdationDto hostelUpdationDto){
+        HostelResponseDto hostelResponseDto = hostelService.updateHostel(hostelUpdationDto);
+        return new ResponseEntity<>(hostelResponseDto, HttpStatus.OK);
     }
 }
