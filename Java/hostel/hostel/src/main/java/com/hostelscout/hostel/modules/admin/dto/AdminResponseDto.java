@@ -1,5 +1,6 @@
 package com.hostelscout.hostel.modules.admin.dto;
 
+import com.hostelscout.hostel.modules.admin.enums.AdminStatus;
 import com.hostelscout.hostel.modules.common.enums.Role;
 import lombok.*;
 
@@ -12,6 +13,8 @@ import java.time.LocalDateTime;
 @Builder
 public class AdminResponseDto {
 
+    private AdminStatus adminStatus;
+    private LocalDateTime statusChangedAt;
     private String username;
     private String email;
     private LocalDateTime createdAt;

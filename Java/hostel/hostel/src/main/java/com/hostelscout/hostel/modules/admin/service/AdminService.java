@@ -5,7 +5,9 @@ import com.hostelscout.hostel.common.exception.ResourceConflictException;
 import com.hostelscout.hostel.common.exception.ResourceNotFoundException;
 import com.hostelscout.hostel.modules.admin.dto.AdminCreationDto;
 import com.hostelscout.hostel.modules.admin.dto.AdminResponseDto;
+import com.hostelscout.hostel.modules.admin.dto.AdminUpdationDto;
 import com.hostelscout.hostel.modules.admin.entity.Admin;
+import com.hostelscout.hostel.modules.admin.enums.AdminStatus;
 import com.hostelscout.hostel.modules.admin.mapper.AdminMapper;
 import com.hostelscout.hostel.modules.admin.repository.AdminRepository;
 import com.hostelscout.hostel.modules.common.entity.BaseUser;
@@ -16,6 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -54,6 +57,8 @@ public class AdminService {
             // Create Admin
             Admin admin = Admin.builder()
                     .baseUser(baseUser)
+                    .adminStatus(AdminStatus.ACTIVE)
+                    .statusChangedAt(LocalDateTime.now())
                     .build();
             admin = adminRepository.save(admin);
 
@@ -78,5 +83,34 @@ public class AdminService {
                 .toList();
     }
 
+    //UPDATE_ADMIN SERVICE
+    @Transactional
+    public AdminResponseDto updateAdmin(AdminUpdationDto adminUpdationDto) {
+
+        // Find Admin by ID
+        Admin admin = adminRepository.findById(adminUpdationDto.getAdmin_id())
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Can't find the admin with id " + adminUpdationDto.getAdmin_id())
+                );
+
+        // Update email if provided
+        if (adminUpdationDto.getEmail() != null) {
+            BaseUser baseUser = admin.getBaseUser();
+            boolean emailExists = baseUserRepository.existsByEmail(adminUpdationDto.getEmail());
+            if (emailExists) {
+                throw new ResourceConflictException("Email already in use: " + adminUpdationDto.getEmail());
+            }
+            baseUser.setEmail(adminUpdationDto.getEmail());
+        }
+
+        // Update admin status if provided
+        if (adminUpdationDto.getAdminStatus() != null) {
+            admin.setAdminStatus(adminUpdationDto.getAdminStatus());
+            admin.setStatusChangedAt(LocalDateTime.now());
+        }
+
+        // Return the updated admin
+        return adminMapper.toAdminResponseDto(admin);
+    }
 
 }
