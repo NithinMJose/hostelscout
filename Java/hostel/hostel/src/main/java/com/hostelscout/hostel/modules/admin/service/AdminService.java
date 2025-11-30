@@ -4,6 +4,7 @@ package com.hostelscout.hostel.modules.admin.service;
 import com.hostelscout.hostel.common.exception.ResourceConflictException;
 import com.hostelscout.hostel.common.exception.ResourceNotFoundException;
 import com.hostelscout.hostel.modules.admin.dto.AdminCreationDto;
+import com.hostelscout.hostel.modules.admin.dto.AdminLoginResponseDto;
 import com.hostelscout.hostel.modules.admin.dto.AdminResponseDto;
 import com.hostelscout.hostel.modules.admin.dto.AdminUpdationDto;
 import com.hostelscout.hostel.modules.admin.entity.Admin;
@@ -13,23 +14,30 @@ import com.hostelscout.hostel.modules.admin.repository.AdminRepository;
 import com.hostelscout.hostel.modules.common.entity.BaseUser;
 import com.hostelscout.hostel.modules.common.enums.Role;
 import com.hostelscout.hostel.modules.common.repository.BaseUserRepository;
+import com.hostelscout.hostel.modules.common.security.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class AdminService {
 
+    private static final Logger logger = LogManager.getLogger(AdminService.class);
     private final BaseUserRepository baseUserRepository;
     private final AdminRepository adminRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final AdminMapper adminMapper;
+    private final JwtService jwtService;
 
     // CREATE_ADMIN SERVICE
     @Transactional
@@ -97,7 +105,8 @@ public class AdminService {
         if (adminUpdationDto.getEmail() != null) {
             BaseUser baseUser = admin.getBaseUser();
             boolean emailExists = baseUserRepository.existsByEmail(adminUpdationDto.getEmail());
-            if (emailExists) {
+            if ( emailExists && (!Objects.equals(baseUser.getEmail(), adminUpdationDto.getEmail())) ) {
+                logger.info("This is an info log message");
                 throw new ResourceConflictException("Email already in use: " + adminUpdationDto.getEmail());
             }
             baseUser.setEmail(adminUpdationDto.getEmail());
@@ -111,6 +120,34 @@ public class AdminService {
 
         // Return the updated admin
         return adminMapper.toAdminResponseDto(admin);
+    }
+
+    // AUTHENTICATION SERVICE
+    @Transactional(readOnly = true)
+    public AdminLoginResponseDto authenticate(String username, String rawPassword) {
+        Optional<BaseUser> baseUserOpt = baseUserRepository.findByUsername(username);
+        BaseUser baseUser = baseUserOpt.orElseThrow(() -> new ResourceNotFoundException("Invalid username or password"));
+
+        if (!passwordEncoder.matches(rawPassword, baseUser.getPassword())) {
+            throw new ResourceNotFoundException("Invalid username or password");
+        }
+
+        if (baseUser.getRole() != Role.ADMIN) {
+            throw new ResourceNotFoundException("User is not an admin");
+        }
+
+        // Find corresponding Admin entity
+        Admin admin = adminRepository.findByBaseUser(baseUser)
+                .orElseThrow(() -> new ResourceNotFoundException("Admin record not found for user"));
+
+        // generate JWT with username as subject
+        String token = jwtService.generateToken(baseUser.getUsername());
+
+        AdminResponseDto adminDto = adminMapper.toAdminResponseDto(admin);
+        return AdminLoginResponseDto.builder()
+                .token(token)
+                .admin(adminDto)
+                .build();
     }
 
 }

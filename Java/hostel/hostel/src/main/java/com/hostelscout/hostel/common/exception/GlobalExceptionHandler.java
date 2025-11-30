@@ -11,6 +11,19 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
     // Handle Resource Not Found exceptions
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException ex) {
+        return new ResponseEntity<>(
+                Map.of(
+                        "error", ex.getMessage(),
+                        "status", HttpStatus.NOT_FOUND.value(),
+                        "timestamp", LocalDateTime.now()
+                ),
+                HttpStatus.NOT_FOUND
+        );
+    }
+
+    // Handle Resource Conflict exceptions
     @ExceptionHandler(ResourceConflictException.class)
     public ResponseEntity<?> handleResourceConflictException(ResourceConflictException ex) {
         return new ResponseEntity<>(
