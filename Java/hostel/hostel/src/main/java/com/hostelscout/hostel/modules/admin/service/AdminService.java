@@ -94,20 +94,21 @@ public class AdminService {
     //UPDATE_ADMIN SERVICE
     @Transactional
     public AdminResponseDto updateAdmin(AdminUpdationDto adminUpdationDto) {
-
+        logger.info("Inside AdminService:updateAdmin");
         // Find Admin by ID
         Admin admin = adminRepository.findById(adminUpdationDto.getAdmin_id())
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Can't find the admin with id " + adminUpdationDto.getAdmin_id())
                 );
 
-        // Update email if provided
+        // Update email fail if provided to keep it unique!
         if (adminUpdationDto.getEmail() != null) {
+            logger.info("Hello World");
             BaseUser baseUser = admin.getBaseUser();
             boolean emailExists = baseUserRepository.existsByEmail(adminUpdationDto.getEmail());
             if ( emailExists && (!Objects.equals(baseUser.getEmail(), adminUpdationDto.getEmail())) ) {
-                logger.info("This is an info log message");
-                throw new ResourceConflictException("Email already in use: " + adminUpdationDto.getEmail());
+                logger.info("Email can not be changed");
+                throw new ResourceConflictException("Email already in use!Email should be kept unique always!" + adminUpdationDto.getEmail());
             }
             baseUser.setEmail(adminUpdationDto.getEmail());
         }
@@ -115,6 +116,7 @@ public class AdminService {
         // Update admin status if provided
         if (adminUpdationDto.getAdminStatus() != null) {
             admin.setAdminStatus(adminUpdationDto.getAdminStatus());
+            logger.info("Admin Status Changed");
             admin.setStatusChangedAt(LocalDateTime.now());
         }
 
@@ -126,7 +128,8 @@ public class AdminService {
     @Transactional(readOnly = true)
     public AdminLoginResponseDto authenticate(String username, String rawPassword) {
         Optional<BaseUser> baseUserOpt = baseUserRepository.findByUsername(username);
-        BaseUser baseUser = baseUserOpt.orElseThrow(() -> new ResourceNotFoundException("Invalid username or password"));
+        BaseUser baseUser = baseUserOpt.orElseThrow(
+                () -> new ResourceNotFoundException("Invalid username or password"));
 
         if (!passwordEncoder.matches(rawPassword, baseUser.getPassword())) {
             throw new ResourceNotFoundException("Invalid username or password");
@@ -141,7 +144,8 @@ public class AdminService {
                 .orElseThrow(() -> new ResourceNotFoundException("Admin record not found for user"));
 
         // generate JWT with username as subject
-        String token = jwtService.generateToken(baseUser.getUsername());
+        String token = jwtService.generateToken(baseUser.getUsername(), Role.ADMIN);
+        logger.info("Token Generated Successfully : "+ token);
 
         AdminResponseDto adminDto = adminMapper.toAdminResponseDto(admin);
         return AdminLoginResponseDto.builder()
