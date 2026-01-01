@@ -1,0 +1,11 @@
+/* ========== User Dashboard Page ========== */
+.dashboard-page h1 {
+  margin: 0 0 1.5rem 0;
+}
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}

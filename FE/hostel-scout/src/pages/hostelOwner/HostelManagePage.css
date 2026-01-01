@@ -1,0 +1,35 @@
+/* ========== Hostel Manage Page ========== */
+.hostel-manage-page h1 {
+  margin: 1rem 0 1.5rem 0;
+}
+
+.action-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.action-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background 0.2s;
+}
+
+.action-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.action-card h3 {
+  margin: 0 0 0.5rem 0;
+}
+
+.action-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}

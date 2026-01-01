@@ -53,7 +53,6 @@ public class AdminController {
         return new ResponseEntity<>(adminResponseDto, HttpStatus.OK);
     }
 
-
     //ONLY FOR SU
     @GetMapping
     public ResponseEntity<List<?>> getAllAdmins(){

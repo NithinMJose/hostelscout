@@ -1,0 +1,35 @@
+/* ========== Owner Hostels Page ========== */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  margin: 0;
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.status {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+.status.active {
+  background: rgba(0, 200, 100, 0.2);
+  color: #00c864;
+}
+
+.status.pending {
+  background: rgba(255, 200, 0, 0.2);
+  color: #ffc800;
+}

@@ -1,0 +1,41 @@
+/* ========== Owner Profile Page ========== */
+.profile-page h1 {
+  margin: 0 0 1.5rem 0;
+}
+
+.profile-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 400px;
+}
+
+.avatar-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #646cff, #5b8cff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.profile-info {
+  text-align: center;
+}
+
+.profile-info h2 {
+  margin: 0 0 0.5rem 0;
+}
+
+.profile-info p {
+  margin: 0.25rem 0;
+  color: rgba(255, 255, 255, 0.7);
+}

@@ -1,0 +1,59 @@
+/* ========== Guest Layout ========== */
+.content-layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+
+.site-footer p {
+  margin: 0.25rem 0 0 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-link {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.footer-link:hover {
+  color: white;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .main-content {
+    padding: 1rem;
+  }
+  
+  .site-footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}

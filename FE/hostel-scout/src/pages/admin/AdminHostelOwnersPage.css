@@ -1,0 +1,5 @@
+/* ========== Admin Hostel Owners Page ========== */
+/* Uses same table styles as AdminUsersPage */
+.owners-page h1 {
+  margin: 0 0 1.5rem 0;
+}

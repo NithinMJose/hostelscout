@@ -1,0 +1,132 @@
+/* ========== Sidebar Component ========== */
+.sidebar {
+  width: 260px;
+  background: rgba(20, 20, 30, 0.98);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: -280px;
+  height: 100vh;
+  z-index: 200;
+  transition: left 0.3s ease;
+  padding: 0;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 199;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sidebar-close {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  color: inherit;
+  font-size: 1rem;
+}
+
+.sidebar-close:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 0.25rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
+}
+
+.sidebar-link.active {
+  background: rgba(100, 108, 255, 0.15);
+  color: #646cff;
+}
+
+.sidebar-icon {
+  font-size: 1.1rem;
+  width: 24px;
+  text-align: center;
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sidebar-logout {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Desktop: Show sidebar always */
+@media (min-width: 1024px) {
+  .sidebar {
+    position: relative;
+    left: 0;
+    top: 0;
+    height: auto;
+    min-height: calc(100vh - 60px);
+  }
+  
+  .sidebar-overlay {
+    display: none;
+  }
+  
+  .sidebar-header {
+    display: none;
+  }
+}
+
+/* Mobile/Tablet: Sidebar hidden by default */
+@media (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    left: -280px;
+  }
+  
+  .sidebar.open {
+    left: 0;
+  }
+  
+  .sidebar-header {
+    display: flex;
+  }
+}

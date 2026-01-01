@@ -1,0 +1,64 @@
+/* ========== Hostel Detail Page ========== */
+.hostel-detail-page h1 {
+  margin: 0 0 0.5rem 0;
+}
+
+.hostel-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.image-placeholder {
+  height: 300px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.hostel-content h1 {
+  margin: 0 0 0.5rem 0;
+}
+
+.hostel-content .location {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.hostel-content .price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #646cff;
+  margin: 1rem 0;
+}
+
+.description,
+.amenities,
+.availability {
+  margin: 1.5rem 0;
+}
+
+.amenities ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.amenities li {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .hostel-detail {
+    grid-template-columns: 1fr;
+  }
+}
