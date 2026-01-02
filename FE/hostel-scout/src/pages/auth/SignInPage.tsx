@@ -60,7 +60,7 @@ export const SignInPage = () => {
 
     (async () => {
       try {
-        const res = await fetch('http://localhost:8080/api/admins/login', {
+        const res = await fetch('http://localhost:8080/api/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
@@ -87,7 +87,7 @@ export const SignInPage = () => {
         localStorage.setItem('user', JSON.stringify(loginData.admin));
 
         // Redirect based on role
-        const redirectPath = getRedirectPath(loginData.admin.role);
+        const redirectPath = getRedirectPath(loginData.role);
         navigate(redirectPath);
       } catch (err) {
         console.error('Network error during login', err);

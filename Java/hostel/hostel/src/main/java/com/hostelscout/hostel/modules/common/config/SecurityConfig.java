@@ -64,7 +64,10 @@ public class SecurityConfig {
                 .csrf(CsrfConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        .requestMatchers("/api/admins/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/hostel-owners").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/hostels").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/admins/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
                         .anyRequest().authenticated()
                 );
 
